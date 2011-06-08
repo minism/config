@@ -1,0 +1,14 @@
+[user]
+	name = josh
+	email = joshbothun@gmail.com
+
+[color]
+    diff = auto
+    status = auto
+    branch = auto
+    interactive = auto
+    ui = true
+    pager = true
+
+[alias]
+    slog = log --pretty=format:\"%C(yellow)%h %Cgreen%cn %Cblue(%ar) %Creset%s\"
