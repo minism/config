@@ -1,9 +1,7 @@
-# xinit config
-
 # add user Xresources
 xrdb -merge ~/.Xresources
 
-
-# launch openbox
-exec openbox-session
+# launch WM
+# exec openbox-session
+exec awesome
 
