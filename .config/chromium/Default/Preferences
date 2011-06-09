@@ -1,12 +1,12 @@
 {
    "browser": {
       "window_placement": {
-         "bottom": 1005,
+         "bottom": 1048,
          "left": 0,
-         "maximized": true,
-         "right": 825,
-         "top": 0,
-         "work_area_bottom": 1025,
+         "maximized": false,
+         "right": 1678,
+         "top": 19,
+         "work_area_bottom": 1050,
          "work_area_left": 0,
          "work_area_right": 1680,
          "work_area_top": 0
@@ -26,18 +26,31 @@
       "suggest_url": "{google:baseSuggestURL}search?client=chrome&hl={language}&q={searchTerms}"
    },
    "dns_prefetching": {
-      "host_referral_list": [ 2, [ "http://www.kernel.org/", [ "http://www.kernel.org/", 0.16999999999999998 ] ] ],
-      "startup_list": [ 1, "http://www.kernel.org/" ]
+      "host_referral_list": [ 2, [ "http://awesome.naquadah.org/", [ "http://awesome.naquadah.org/", 0.7494070473630601, "http://www.w3.org/", 0.7494070473630601 ] ], [ "http://google.com/", [ "http://www.google.com/", 2.2086570657060003 ] ], [ "http://tuomov.iki.fi/", [ "http://csi.gstatic.com/", 1.3074916076356256, "http://tuomov.iki.fi/", 1.3997536693446653, "http://www.google-analytics.com/", 1.3997536693446653, "http://www.gstatic.com/", 1.1885524420164484 ] ], [ "http://www.archlinux.org/", [ "http://static.archlinux.org/", 3.1714050174239996, "http://www.archlinux.org/", 3.1714050174239996 ] ], [ "http://www.google.com/", [ "http://ajax.googleapis.com/", 2.2086570657060003, "http://fonts.googleapis.com/", 2.2086570657060003, "http://id.google.com/", 1.45771366336596, "http://ssl.gstatic.com/", 2.1673230869789073, "http://themes.googleusercontent.com/", 2.2086570657060003, "http://www.google.com/", 6.802890291304293 ] ], [ "http://www.kernel.org/", [ "http://www.kernel.org/", 0.16045799195299998 ] ], [ "https://awesome.naquadah.org/", [ "https://awesome.naquadah.org/", 4.009634958259479 ] ], [ "https://wiki.archlinux.org/", [ "https://d11xdyzr0div58.cloudfront.net/", 7.751406106523518, "https://wiki.archlinux.org/", 2.33015861274392 ] ] ],
+      "startup_list": [ 1, "http://awesome.naquadah.org/", "http://crl.startssl.com/", "http://crl3.digicert.com/", "http://crl4.digicert.com/", "http://ocsp.startssl.com/", "http://ocsp.thawte.com/", "http://www.startssl.com/", "http://www.w3.org/", "https://awesome.naquadah.org/", "https://wiki.archlinux.org/" ]
    },
    "download": {
       "directory_upgrade": true
    },
    "extensions": {
       "autoupdate": {
-         "next_check": "12952049784953736"
+         "last_check": "12952124481753901",
+         "next_check": "12952146580374082"
+      },
+      "blacklistupdate": {
+         "lastpingday": "12952051230510145",
+         "version": "0.0.0.5"
       },
       "chrome_url_overrides": {
          "bookmarks": [ "chrome-extension://eemcgdkfndhakfknompkggombfjjjeno/main.html" ]
+      },
+      "settings": {
+         "hpibmhghjndideebpackbdlpncgkcppp": {
+            "blacklist": true
+         },
+         "lncjcfkpannmofmpgdfoonkniofdnaba": {
+            "blacklist": true
+         }
       }
    },
    "google": {
@@ -52,11 +65,13 @@
       "promo_build": 2,
       "promo_closed": false,
       "promo_end": 1299830340.0,
-      "promo_group": 12,
+      "promo_group": 11,
       "promo_group_timeslice": 0,
       "promo_line": "Use Chrome on another computer? Take your bookmarks and more with you.",
-      "promo_resource_cache_update": "1307492416.088193",
-      "promo_start": 1299830280.0
+      "promo_resource_cache_update": "1307650429.321285",
+      "promo_start": 1299830280.0,
+      "shown_sections": 64,
+      "webstore_last_promo_id": "1257606"
    },
    "plugins": {
       "enabled_internal_pdf3": true
@@ -65,7 +80,11 @@
       "content_settings": {
          "pref_version": 1
       },
-      "exited_cleanly": true
+      "exited_cleanly": false,
+      "per_host_zoom_levels": {
+         "awesome.naquadah.org": 1.0,
+         "wiki.archlinux.org": 1.0
+      }
    },
    "tabs": {
       "use_vertical_tabs": false

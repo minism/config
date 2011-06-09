@@ -157,6 +157,17 @@
    "local_state": {
       "multiple_profile_prefs_version": 3
    },
+   "ntp": {
+      "promo_locale": "en-US",
+      "promo_version": 1,
+      "webstorepromo": {
+         "button": "Get Angry Birds Now",
+         "expire": "No thanks, hide this",
+         "header": "Angry Birds is in the Chrome Web Store.",
+         "id": "1257606",
+         "link": "https://chrome.google.com/webstore?hl=en-US&utm_source=chrome-ntp"
+      }
+   },
    "safe_browsing": {
       "client_key": "Sv-wEESmi76RFSgQnn_Yxw==",
       "wrapped_key": "AKEgNisinrG6icUmzrgW_9HNtv5xZcT1TJBNCqkIXELoVwohblTwFGfDF53u1Ip1Ge_7P4KFoj7A9qPtgNGo4BzcyRVprLRKzA=="
@@ -164,33 +175,33 @@
    "show-minimal-first-run-bubble": true,
    "show-welcome-page": true,
    "shutdown": {
-      "num_processes": 1,
+      "num_processes": 0,
       "num_processes_slow": 0,
-      "type": 1
+      "type": 0
    },
    "uninstall_metrics": {
       "installation_date2": "1307404599",
-      "launch_count": "3"
+      "launch_count": "6"
    },
    "user_experience_metrics": {
-      "session_id": 2,
+      "session_id": 5,
       "stability": {
-         "breakpad_registration_fail": 2,
+         "breakpad_registration_fail": 3,
          "breakpad_registration_ok": 0,
          "crash_count": 0,
-         "debugger_not_present": 2,
+         "debugger_not_present": 3,
          "debugger_present": 0,
-         "exited_cleanly": true,
+         "exited_cleanly": false,
          "incomplete_session_end_count": 0,
-         "last_timestamp_sec": "1307575611",
-         "launch_count": 2,
-         "launch_time_sec": "1307575607",
+         "last_timestamp_sec": "1307659645",
+         "launch_count": 3,
+         "launch_time_sec": "1307653045",
          "page_load_count": 0,
          "renderer_crash_count": 0,
          "renderer_hang_count": 0,
          "session_end_completed": true,
-         "stats_buildtime": "1307372221",
-         "stats_version": "11.0.696.77-devel"
+         "stats_buildtime": "1307465646",
+         "stats_version": "12.0.742.91-devel"
       }
    }
 }
