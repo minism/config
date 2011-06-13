@@ -55,6 +55,7 @@ mainmenu = awful.menu(
 { 
     items =
     { 
+        {"browser", "chromium --user-data-dir=/home/josh/.chromium"},
         {"terminal", terminal},
         {"awesome", awesomemenu, beautiful.awesome_icon },
     }
@@ -64,7 +65,7 @@ mainmenu = awful.menu(
 mainmenubutton = awful.widget.launcher({ image = image(beautiful.awesome_icon),
                                      menu = mainmenu })
 -- create a textclock widget
-textclock = awful.widget.textclock({ align = "right" })
+textclock = awful.widget.textclock({ align = "right" }, "%a %b %d, %l:%M")
 
 -- create a systray
 systray = widget({ type = "systray" })
@@ -161,9 +162,9 @@ end
 
 -- mouse bindings
 root.buttons(awful.util.table.join(
-    awful.button({ }, 3, function () mainmenu:toggle() end),
-    awful.button({ }, 4, awful.tag.viewnext),
-    awful.button({ }, 5, awful.tag.viewprev)
+    -- awful.button({ }, 3, function () mainmenu:toggle() end),
+    -- awful.button({ }, 4, awful.tag.viewnext),
+    -- awful.button({ }, 5, awful.tag.viewprev)
 ))
 
 -- key bindings
@@ -229,8 +230,8 @@ globalkeys = awful.util.table.join(
 clientkeys = awful.util.table.join(
     awful.key({ modkey,           }, "f",      function (c) c.fullscreen = not c.fullscreen  end),
     awful.key({ modkey,           }, "w",      function (c) c:kill()                         end),
-    awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ),
-    awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end),
+    awful.key({ modkey,           }, "t",  awful.client.floating.toggle                     ),
+    awful.key({ modkey, "Control" }, "f",      function (c) c:swap(awful.client.getmaster()) end),
     awful.key({ modkey,           }, "o",      awful.client.movetoscreen                        ),
     awful.key({ modkey, "Shift"   }, "r",      function (c) c:redraw()                       end),
     awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end),
@@ -299,13 +300,18 @@ awful.rules.rules = {
                      border_color = beautiful.border_normal,
                      focus = true,
                      keys = clientkeys,
-                     buttons = clientbuttons } },
+                     buttons = clientbuttons },
+      callback = awful.client.setslave },
     { rule = { class = "MPlayer" },
       properties = { floating = true } },
     { rule = { class = "pinentry" },
       properties = { floating = true } },
     { rule = { class = "gimp" },
       properties = { floating = true } },
+    { rule = { class = "Conky" },
+      properties = { ontop = true } },
+    -- { rule = { class = "URxvt" },
+    --  properties = { opacity = 0.5 } },
     -- Set Firefox to always map on tags number 2 of screen 1.
     -- { rule = { class = "Firefox" },
     --   properties = { tag = tags[1][2] } },

@@ -2,6 +2,7 @@
 # urxvt config
 
 # urxvt*font:             xft:Bitstream Vera Sans Mono:pixelsize=12
+URxvt*geometry:         100x30
 urxvt*font:             xft:Monaco:pixelsize=12
 urxvt*boldFont:         xft:Monaco:pixelsize=12
 urxvt*termName:         rxvt
@@ -24,7 +25,7 @@ Xft*hinting:            full
 # Halts the entire system.  nvidia bug.  Disabled
 # for now.
 # URxvt*depth:            32
-# URxvt*background:       rgba:0000/0000/0000/aaaa
+URxvt*background:       rgba:0000/0000/0000/bbbb
 
 # Fake transparency
 #URxvt*transparent:   true

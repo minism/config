@@ -5,7 +5,7 @@ cairo-compmgr &
 thunar --daemon &
 
 # Set wallpaper
-feh --bg-fill ~/bg
+feh --bg-fill ~/.bg
 
 # System monitor
 conky &

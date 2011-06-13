@@ -3,11 +3,11 @@
 # desktop layout
 # set both to -1 to use default values (set by window manager)
 cols = 3
-rows = 3
+rows = 2
 
 # window geometry
 # set height to 0 to make it automatically calculated
-geometry = "200x0-30+880"
+geometry = "200x0-30+920"
 
 # show window title popups?
 show_popups = true

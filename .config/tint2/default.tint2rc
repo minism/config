@@ -6,13 +6,13 @@
 # ID 1
 rounded = 2
 border_width = 0
-background_color = #000000 35
+background_color = #000000 33
 border_color = #FFFFFF 0
 
 # ID 2
 rounded = 3
 border_width = 0
-background_color = #222222 58
+background_color = #222222 56
 border_color = #00A1FF 80
 
 # ID 3
@@ -76,8 +76,8 @@ systray = 1
 systray_padding = 5 5 3
 systray_sort = ascending
 systray_background_id = 0
-systray_icon_size = 20
-systray_icon_asb = 100 0 0
+systray_icon_size = 25
+systray_icon_asb = 100 0 10
 
 # Clock
 time1_format = %l:%M %P %a %b %d
