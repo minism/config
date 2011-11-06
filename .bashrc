@@ -38,7 +38,7 @@ parse_git_branch()
 alias ls='ls -F --color=auto'
 alias vi=vim
 alias more='less'
-alias rpush='rsync -avz --exclude-from=.gitignore --exclude=.git'
+alias rpush='rsync -rptgoDvz --exclude-from=.gitignore --exclude=.git'
 
 
 ### Environment ###
@@ -51,6 +51,7 @@ export PS1="\u@\h \[\033[0;36m\]\w\[\033[0m\] \[\033[0;33m\]\$(type -t parse_git
 ### Path ###
 
 # User bin 
+PATH="~/dev/bin:${PATH}"
 PATH="~/local/bin:${PATH}"
 
 

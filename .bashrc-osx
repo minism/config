@@ -1,5 +1,5 @@
 alias ls='ls -FG'
-alias sub='subl -a'
+alias sub='sub -a'
 
 
 # QT Path
