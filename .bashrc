@@ -38,7 +38,7 @@ parse_git_branch()
 alias ls='ls -F --color=auto'
 alias vi=vim
 alias more='less'
-alias rpush='rsync -rptgoDvz --exclude-from=.gitignore --exclude=.git'
+alias rpush='rsync -avzL --exclude-from=.gitignore --exclude=.git'
 
 
 ### Environment ###
