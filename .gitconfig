@@ -1,6 +1,6 @@
 [user]
 	name = josh
-	email = joshbothun@gmail.com
+	email = jbothun@concentricsky.com
 
 [color]
     diff = auto
@@ -11,4 +11,5 @@
     pager = true
 
 [alias]
-    slog = log --pretty=format:\"%C(yellow)%h %Cgreen%cn %Cblue(%ar) %Creset%s\"
+    slog = !"f() { git log $@ --pretty=format:\"%%BEGIN%C(yellow)%h %Cgreen%cn %Cblue(%ar) %Creset%s%%END%b\" | perl -pe 'chomp; s/%BEGIN|.*//; s/%END.+/ (\\033[0;31m...\\033[0m)\n/; s/%END/\n/' | less -RXF; }; f"
+    st = status

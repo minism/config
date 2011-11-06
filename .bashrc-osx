@@ -1,0 +1,29 @@
+alias ls='ls -FG'
+alias sub='subl -a'
+
+
+# QT Path
+# PATH="/Users/josh/dev/sdk/qt/Desktop/Qt/473/gcc/bin:$PATH"
+
+# PATH for postgresql
+PATH="/Library/PostgreSQL/9.0/bin:${PATH}"
+export PATH
+
+# PATH for android
+PATH="~/dev/sdk/android-sdk/platform-tools:${PATH}"
+export PATH
+
+# Add sbin
+PATH="/usr/local/sbin:${PATH}"
+
+
+
+
+# For XML2RFC testing
+export XML_LIBRARY="~/.cache/library"
+
+# --- The following settings enable python2.7  Comment to revert to system python 2.6
+PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}"
+PATH="/usr/local/bin:${PATH}"
+export PATH
+

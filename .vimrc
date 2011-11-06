@@ -6,3 +6,8 @@ set tabstop=4 shiftwidth=4
 retab
 
 syntax on
+
+map , <<
+map . >>
+vmap , <<
+vmap . >>
