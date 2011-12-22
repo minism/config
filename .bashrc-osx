@@ -1,6 +1,6 @@
 alias ls='ls -FG'
 alias sub='sub -a'
-
+alias st='open -a SourceTree .'
 
 # QT Path
 # PATH="/Users/josh/dev/sdk/qt/Desktop/Qt/473/gcc/bin:$PATH"

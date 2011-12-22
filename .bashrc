@@ -45,7 +45,7 @@ alias rpush='rsync -avzL --exclude-from=.gitignore --exclude=.git --exclude=.git
 
 export CLICOLOR=1
 export EDITOR=vim
-export PS1="\u@\h \[\033[0;36m\]\w\[\033[0m\] \[\033[0;33m\]\$(type -t parse_git_branch > /dev/null && parse_git_branch)\[\033[0m\]% "
+export PS1="\[\033[0;32m\]\u@\h\[\033[0m\] \[\033[0;36m\]\w\[\033[0m\] \[\033[0;33m\]\$(type -t parse_git_branch > /dev/null && parse_git_branch)\[\033[0m\]% "
 
 
 ### Path ###
