@@ -1,2 +1,0 @@
-# <minute> <hour> <dom> <month> <dow> <COMMAND> 
-# @reboot|@yearly|@annually|@monthly|@weekly|@daily|@midnight|@hourly <COMMAND>
