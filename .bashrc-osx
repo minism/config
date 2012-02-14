@@ -1,29 +1,31 @@
+# Aliases
 alias ls='ls -FG'
 alias sub='sub -a'
 alias st='open -a SourceTree .'
 
-# QT Path
-# PATH="/Users/josh/dev/sdk/qt/Desktop/Qt/473/gcc/bin:$PATH"
+# QT
+addpath /Users/josh/dev/sdk/qt/Desktop/Qt/473/gcc/bin
 
-# PATH for postgresql
-PATH="/Library/PostgreSQL/9.0/bin:${PATH}"
-export PATH
+# Postgres
+addpath /Library/PostgreSQL/9.0/bin
 
-# PATH for android
-PATH="~/dev/sdk/android-sdk/platform-tools:${PATH}"
-export PATH
+# Android
+addpath ~/dev/sdk/android-sdk/platform-tools
 
-# Add sbin
-PATH="/usr/local/sbin:${PATH}"
+# AWS
+addpath ~/dev/sdk/aws/bin
 
-
+# MYSQL
+addpath /usr/local/mysql/bin
 
 
 # For XML2RFC testing
 export XML_LIBRARY="~/.cache/library"
 
-# --- The following settings enable python2.7  Comment to revert to system python 2.6
-PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}"
-PATH="/usr/local/bin:${PATH}"
-export PATH
+# PIP cache
+export PIP_DOWNLOAD_CACHE=$HOME/.cache/pip 
 
+# --- The following settings enable python2.7  Comment to revert to system python 2.6
+addpath "/Library/Frameworks/Python.framework/Versions/2.7/bin"
+
+export DYLD_LIBRARY_PATH=/usr/local/mysql/lib
