@@ -62,6 +62,7 @@ alias py=python
 alias more='less'
 alias rpush='rsync -avzL --exclude-from=.gitignore --exclude=.git --exclude=.gitignore'
 alias pytest='python setup.py -q install && '
+alias jcurl='curl -H "Accept: application/json"'
 
 
 ### Environment ###
@@ -70,6 +71,7 @@ export CLICOLOR=1
 export EDITOR=vim
 export PS1="\[\033[0;32m\]\u@\h\[\033[0m\] \[\033[0;36m\]\w\[\033[0m\] \[\033[0;33m\]\$(type -t git_prompt > /dev/null && git_prompt)\[\033[0;31m\]\[\033[0m\]% "
 export PATH
+export PYTHONSTARTUP="$HOME/.pystartup"
 
 
 ### Path ###
