@@ -10,6 +10,7 @@ addpath /Users/josh/dev/sdk/qt/Desktop/Qt/473/gcc/bin
 addpath /Library/PostgreSQL/9.0/bin
 
 # Android
+addpath ~/dev/sdk/android-sdk/tools
 addpath ~/dev/sdk/android-sdk/platform-tools
 
 # AWS

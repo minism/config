@@ -54,6 +54,13 @@ addpath ()
     fi
 }
 
+
+# Link to global git hooks
+install-git-hooks ()
+{
+    ln -s $HOME/dev/config/git-hooks/pre-commit .git/hooks/pre-commit
+}
+
 ### Aliases ###
 
 alias ls='ls -F --color=auto'
@@ -63,6 +70,7 @@ alias more='less'
 alias rpush='rsync -avzL --exclude-from=.gitignore --exclude=.git --exclude=.gitignore'
 alias pytest='python setup.py -q install && '
 alias jcurl='curl -H "Accept: application/json"'
+alias tmpenv='rm -rf /tmp/tmpenv && virtualenv /tmp/tmpenv && source /tmp/tmpenv/bin/activate'
 
 
 ### Environment ###
@@ -87,3 +95,7 @@ addpath /usr/local/sbin
 [ -r ~/.bashrc-osx ] && source ~/.bashrc-osx
 [ -r ~/.bashrc-linux ] && source ~/.bashrc-linux
 [ -r ~/.bashrc-local ] && source ~/.bashrc-local
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
