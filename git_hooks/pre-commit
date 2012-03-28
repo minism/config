@@ -25,7 +25,7 @@ def parse_processor(processor):
     return processor.get('error', ''), \
            processor.get('command', 'exit'), \
            processor.get('match', ['.*']), \
-           processor.get('ignore', []),
+           processor.get('ignore', []), \
            processor.get('fail_on', 0)
 
 
