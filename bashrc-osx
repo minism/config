@@ -30,3 +30,7 @@ export PIP_DOWNLOAD_CACHE=$HOME/.cache/pip
 addpath "/Library/Frameworks/Python.framework/Versions/2.7/bin"
 
 export DYLD_LIBRARY_PATH=/usr/local/mysql/lib
+
+
+
+alias love='open -a Love'

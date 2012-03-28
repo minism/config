@@ -80,7 +80,7 @@ export EDITOR=vim
 export PS1="\[\033[0;32m\]\u@\h\[\033[0m\] \[\033[0;36m\]\w\[\033[0m\] \[\033[0;33m\]\$(type -t git_prompt > /dev/null && git_prompt)\[\033[0;31m\]\[\033[0m\]% "
 export PATH
 export PYTHONSTARTUP="$HOME/.pystartup"
-
+# export LUA_PATH="$HOME/local/lib/lua/?.lua;$HOME/local/lib/lua/?/init.lua"
 
 ### Path ###
 
