@@ -46,6 +46,14 @@ git_prompt()
   fi
 }
 
+# Get the current screen number
+screen_prompt()
+{
+  if [ "${WINDOW}" != "" ]; then
+    echo "[$WINDOW] "
+  fi
+}
+
 # Add a path to PATH if it doesn't already exist
 addpath ()
 {
@@ -77,7 +85,7 @@ alias tmpenv='rm -rf /tmp/tmpenv && virtualenv /tmp/tmpenv && source /tmp/tmpenv
 
 export CLICOLOR=1
 export EDITOR=vim
-export PS1="\[\033[0;32m\]\u@\h\[\033[0m\] \[\033[0;36m\]\w\[\033[0m\] \[\033[0;33m\]\$(type -t git_prompt > /dev/null && git_prompt)\[\033[0;31m\]\[\033[0m\]% "
+export PS1="\$(type -t screen_prompt > /dev/null && screen_prompt)\[\033[0;32m\]\u@\h\[\033[0m\] \[\033[0;36m\]\w\[\033[0m\] \[\033[0;33m\]\$(type -t git_prompt > /dev/null && git_prompt)\[\033[0;31m\]\[\033[0m\]% "
 export PATH
 export PYTHONSTARTUP="$HOME/.pystartup"
 # export LUA_PATH="$HOME/local/lib/lua/?.lua;$HOME/local/lib/lua/?/init.lua"
