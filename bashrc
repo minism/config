@@ -23,12 +23,26 @@ p()
     builtin popd "$@" > /dev/null
 }
 
+
 # Immediate cd to new dir
 cdp()
 {
     mkdir -p $1;
     cd $1;
 }
+
+
+# Make a python directory (now with -p!!)
+mkpydir()
+{
+    mkdir -p $1;
+    dir=$(dirname $1)
+    while [ "$dir" != "." ]; do
+        touch $dir/__init__.py
+        dir=$(dirname $dir);
+    done
+}
+
 
 # Returns "*" if the current git branch is dirty.
 function parse_git_dirty 

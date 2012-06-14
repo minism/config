@@ -1,0 +1,66 @@
+#!/usr/bin/env python
+
+import os
+import sys
+import subprocess
+import re
+
+
+# The following rules are ran for each file in the commit index
+# NOTE: Use '%s' in the command for the filename position
+PROCESSORS = [
+    {
+        'error':    'PDB statements found',
+        'command':  'grep -Hn "import pdb" %s',
+        'match':    ['\.py'],
+    },
+    {
+        'error':    'JS breakpoint found',
+        'command':  'grep -Hn "debugger" %s',
+        'match':    ['\.js', '\.html'],
+    },
+]
+
+
+def parse_processor(processor):
+    return processor.get('error', ''), \
+           processor.get('command', 'exit'), \
+           processor.get('match', ['.*']), \
+           processor.get('ignore', []), \
+           processor.get('fail_on', 0)
+
+
+def sub(*args):
+    p = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
+    out, err = p.communicate()
+    if err:
+        raise Exception(err)
+    return p.returncode, out
+
+
+def get_staged_files():
+    return sub('git diff --cached --name-only')[1].splitlines()
+
+
+def main():
+    files = get_staged_files()
+    for error, command, match, ignore, fail_on in map(parse_processor, PROCESSORS):
+        # Filter for files to apply to
+        for function in (
+            lambda path: any((re.search(pat, path) for pat in match)),
+            lambda path: not any((re.search(pat, path) for pat in ignore)),
+            lambda path: os.path.exists(path)
+        ):
+            files = filter(function, files)
+
+        # Run processor on each file
+        for filename in files:
+            ret, out = sub(command % filename)
+            if ret == fail_on:
+                print "Unable to commit: %s\n  %s" % (error, out)
+                return 1
+    return 0
+
+
+if __name__ == '__main__':
+    sys.exit(main())
