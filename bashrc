@@ -36,7 +36,7 @@ cdp()
 mkpydir()
 {
     mkdir -p $1;
-    dir=$(dirname $1)
+    dir=$1
     while [ "$dir" != "." ]; do
         touch $dir/__init__.py
         dir=$(dirname $dir);
@@ -76,6 +76,13 @@ addpath ()
     fi
 }
 
+# Delete remote branches that have been merged in 
+git-prune-remote ()
+{
+    base=$1||"master"
+    git branch -r --merged ${base} | sed 's/ *origin\///' | grep -v '${base}$' | xargs -I% git push origin :%
+}
+
 
 # Link to global git hooks
 install-git-hooks ()
@@ -86,13 +93,15 @@ install-git-hooks ()
 ### Aliases ###
 
 alias ls='ls -F --color=auto'
+alias tree='tree -C'
 alias vi=vim
 alias py=python
 alias more='less'
-alias rpush='rsync -avzL --exclude-from=.gitignore --exclude=.git --exclude=.gitignore'
+alias rpush='rsync -avz --exclude-from=.gitignore --exclude=.git --exclude=.gitignore'
 alias pytest='python setup.py -q install && '
 alias jcurl='curl -H "Accept: application/json"'
 alias tmpenv='rm -rf /tmp/tmpenv && virtualenv /tmp/tmpenv && source /tmp/tmpenv/bin/activate'
+alias grep='egrep --color=auto'
 
 
 ### Environment ###

@@ -15,6 +15,11 @@ PROCESSORS = [
         'match':    ['\.py'],
     },
     {
+        'error':    'Import * statements found',
+        'command':  'grep -Hn "import *" %s',
+        'match':    ['\.py'],
+    },
+    {
         'error':    'JS breakpoint found',
         'command':  'grep -Hn "debugger" %s',
         'match':    ['\.js', '\.html'],

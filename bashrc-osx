@@ -1,7 +1,8 @@
 # Aliases
 alias ls='ls -FG'
 alias sub='sub -a'
-alias st='open -a SourceTree .'
+alias st='open -a SourceTree'
+alias love='open -a Love'
 
 # QT
 addpath /Users/josh/dev/sdk/qt/Desktop/Qt/473/gcc/bin
@@ -30,11 +31,6 @@ export PIP_DOWNLOAD_CACHE=$HOME/.cache/pip
 addpath "/Library/Frameworks/Python.framework/Versions/2.7/bin"
 
 export DYLD_LIBRARY_PATH=/usr/local/mysql/lib
-
-
-
-alias love='open -a Love'
-
 
 # Tab width
 tabs -4
