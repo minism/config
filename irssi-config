@@ -27,7 +27,15 @@ servers = (
   { address = "irc.webchat.org"; chatnet = "WebChat"; port = "6667"; },
   { address = "irc.rizon.net"; chatnet = "Rizon"; port = "6667"; },
   { address = "irc.link-net.org"; chatnet = "LinkNet"; port = "6667"; },
-  { address = "silc.silcnet.org"; chatnet = "SILC"; port = "706"; }
+  { address = "silc.silcnet.org"; chatnet = "SILC"; port = "706"; },
+  {
+    address = "chat.freenode.net";
+    chatnet = "freenode";
+    port = "6667";
+    use_ssl = "no";
+    ssl_verify = "no";
+    autoconnect = "yes";
+  }
 );
 
 chatnets = {
@@ -94,6 +102,7 @@ chatnets = {
   };
   SILC = { type = "SILC"; };
   Ubuntu = { type = "IRC"; };
+  freenode = { type = "IRC"; };
 };
 
 channels = (
@@ -263,6 +272,22 @@ statusbar = {
   };
 };
 settings = {
-  core = { real_name = "Unknown"; user_name = "josh"; nick = "josh"; };
+  core = { real_name = "Unknown"; user_name = "josh"; nick = "minism"; };
   "fe-text" = { actlist_sort = "refnum"; term_force_colors = "yes"; };
+  "fe-common/core" = {
+    autocreate_own_query = "no";
+    autocreate_query_level = "DCCMSGS";
+    use_status_window = "no";
+    use_msgs_window = "yes";
+    reuse_unused_windows = "yes";
+    autoclose_windows = "no";
+    theme = "agon";
+    autolog = "yes";
+  };
 };
+hilights = (
+  { text = "minism"; nick = "yes"; word = "yes"; },
+  { text = "josh"; nick = "yes"; word = "yes"; }
+);
+keyboard = ( );
+logs = { };
