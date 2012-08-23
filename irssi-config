@@ -35,6 +35,21 @@ servers = (
     use_ssl = "no";
     ssl_verify = "no";
     autoconnect = "yes";
+  },
+  {
+    address = "irc.speeddemosarchive.com";
+    chatnet = "SDA";
+    port = "6667";
+    use_ssl = "no";
+    ssl_verify = "no";
+    autoconnect = "yes";
+  },
+  {
+    address = "irc.afternet.org";
+    chatnet = "afternet";
+    port = "6667";
+    use_ssl = "no";
+    ssl_verify = "no";
   }
 );
 
@@ -103,11 +118,13 @@ chatnets = {
   SILC = { type = "SILC"; };
   Ubuntu = { type = "IRC"; };
   freenode = { type = "IRC"; };
+  SDA = { type = "IRC"; };
+  afternet = { type = "IRC"; };
 };
 
 channels = (
-  { name = "#irssi"; chatnet = "ircnet"; autojoin = "No"; },
-  { name = "silc"; chatnet = "silc"; autojoin = "No"; }
+  { name = "#sda"; chatnet = "SDA"; autojoin = "yes"; },
+  { name = "#ludumdare"; chatnet = "afternet"; autojoin = "yes"; }
 );
 
 aliases = {
@@ -158,6 +175,7 @@ aliases = {
   ATAG = "WINDOW SERVER";
   UNSET = "set -clear";
   RESET = "set -default";
+  L = "window list";
 };
 
 statusbar = {
@@ -182,7 +200,7 @@ statusbar = {
     # window_empty is printed with empty windows
     window = "{sb $winref:$tag/$itemname{sbmode $M}}";
     window_empty = "{sb $winref{sbservertag $tag}}";
-    prompt = "{prompt $[.15]itemname}";
+    prompt = "{prompt $tag/$[.15]itemname}";
     prompt_empty = "{prompt $winname}";
     topic = " $topic";
     topic_empty = " Irssi v$J - http://www.irssi.org";
@@ -281,13 +299,26 @@ settings = {
     use_msgs_window = "yes";
     reuse_unused_windows = "yes";
     autoclose_windows = "no";
-    theme = "agon";
+    theme = "josh";
     autolog = "yes";
+    activity_hide_level = "parts joins quits nicks modes";
   };
 };
 hilights = (
   { text = "minism"; nick = "yes"; word = "yes"; },
   { text = "josh"; nick = "yes"; word = "yes"; }
 );
-keyboard = ( );
+keyboard = (
+  { key = "^G"; id = "next_window"; data = ""; },
+  { key = "^[!"; id = "change_window"; data = "1"; },
+  { key = "meta-q"; id = "change_window"; data = "1"; },
+  { key = "meta-w"; id = "change_window"; data = "2"; },
+  { key = "meta-e"; id = "change_window"; data = "3"; },
+  { key = "mup"; id = "scroll_backward"; data = ""; },
+  { key = "mdown"; id = "scroll_forward"; data = ""; },
+  { key = "meta-r"; id = "change_window"; data = "4"; },
+  { key = "meta-s"; id = "change_window"; data = "5"; },
+  { key = "meta-d"; id = "change_window"; data = "6"; },
+  { key = "meta-f"; id = "change_window"; data = "7"; }
+);
 logs = { };
