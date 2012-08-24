@@ -90,6 +90,13 @@ install-git-hooks ()
     ln -s $HOME/dev/config/git-hooks/pre-commit .git/hooks/pre-commit
 }
 
+
+# Connect to remote irssi screen (or create a new one)
+irc()
+{
+    ssh edgar -t "screen -D -RR -S irssi irssi"
+}
+
 ### Aliases ###
 
 alias ls='ls -F --color=auto'
