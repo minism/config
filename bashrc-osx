@@ -4,8 +4,6 @@ alias sub='sub -a'
 alias st='open -a SourceTree'
 alias love='open -a Love'
 
-# QT
-addpath /Users/josh/dev/sdk/qt/Desktop/Qt/473/gcc/bin
 
 # Postgres
 addpath /Library/PostgreSQL/9.0/bin
@@ -22,15 +20,13 @@ addpath /usr/local/mysql/bin
 
 
 # For XML2RFC testing
-export XML_LIBRARY="~/.cache/library"
+# export XML_LIBRARY="~/.cache/library"
 
 # PIP cache
 export PIP_DOWNLOAD_CACHE=$HOME/.cache/pip 
 
 # --- The following settings enable python2.7  Comment to revert to system python 2.6
 addpath "/Library/Frameworks/Python.framework/Versions/2.7/bin"
-
-export DYLD_LIBRARY_PATH=/usr/local/mysql/lib
 
 # Tab width
 tabs -4

@@ -7,7 +7,7 @@ bind '"[B":history-search-forward'
 
 ### Functions ###
 
-# Directory stack
+# Push directory
 cd()
 {
     if [ -z "$@" ] ; 
@@ -18,13 +18,14 @@ cd()
     fi  
 }
 
+# Pop to directory
 p()
 {
     builtin popd "$@" > /dev/null
 }
 
 
-# Immediate cd to new dir
+# mkdirp and cd
 cdp()
 {
     mkdir -p $1;
@@ -45,49 +46,45 @@ mkpydir()
 
 
 # Returns "*" if the current git branch is dirty.
-function parse_git_dirty 
+_parse_git_dirty()
 {
-  [[ $(git diff --shortstat 2> /dev/null | tail -n1) != "" ]] && echo "*"
+    [[ $(git diff --shortstat 2> /dev/null | tail -n1) != "" ]] && echo "*"
 }
+
 
 # Get the current git branch name (if available)
-git_prompt() 
+_git_prompt()
 {
-  local ref=$(git symbolic-ref HEAD 2>/dev/null | cut -d'/' -f3)
-  if [ "$ref" != "" ]
-  then
-    echo "($ref$(parse_git_dirty)) "
-  fi
-}
-
-# Get the current screen number
-screen_prompt()
-{
-  if [ "${WINDOW}" != "" ]; then
-    echo "[$WINDOW] "
-  fi
-}
-
-# Add a path to PATH if it doesn't already exist
-addpath ()
-{
-    if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
-        PATH="$1:$PATH"
+    local ref=$(git symbolic-ref HEAD 2>/dev/null | cut -d'/' -f3)
+    if [ "$ref" != "" ]; then
+        echo "($ref$(_parse_git_dirty)) "
     fi
 }
 
+
 # Delete remote branches that have been merged in 
-git-prune-remote ()
+git-prune-remote()
 {
     base=$1||"master"
     git branch -r --merged ${base} | sed 's/ *origin\///' | grep -v '${base}$' | xargs -I% git push origin :%
 }
 
 
-# Link to global git hooks
-install-git-hooks ()
+# Get the current screen number
+_screen_prompt()
 {
-    ln -s $HOME/dev/config/git-hooks/pre-commit .git/hooks/pre-commit
+  if [ "${WINDOW}" != "" ]; then
+    echo "[$WINDOW] "
+  fi
+}
+
+
+# Add a path to PATH or move existing to front of list
+addpath()
+{
+    PATH=${PATH//":$1"/}    #delete any instances in the middle or at the end
+    PATH=${PATH//"$1:"/}    #delete any instances at the beginning
+    export PATH="$1:$PATH"  #prepend to beginning
 }
 
 
@@ -97,6 +94,16 @@ irc()
     ssh edgar -t "screen -D -RR -S irssi irssi"
 }
 
+
+# Rsync a git directory
+gsync()
+{
+    dir=$1
+    rsync -avz --exclude-from=$1/.gitignore --exclude=$1/.git --exclude=.gitignore $@
+}
+
+
+
 ### Aliases ###
 
 alias ls='ls -F --color=auto'
@@ -104,23 +111,26 @@ alias tree='tree -C'
 alias vi=vim
 alias py=python
 alias more='less'
-alias rpush='rsync -avz --exclude-from=.gitignore --exclude=.git --exclude=.gitignore'
 alias pytest='python setup.py -q install && '
 alias jcurl='curl -H "Accept: application/json"'
 alias tmpenv='rm -rf /tmp/tmpenv && virtualenv /tmp/tmpenv && source /tmp/tmpenv/bin/activate'
 alias grep='egrep --color=auto'
+alias mtime='stat -f %m'
+
 
 
 ### Environment ###
 
 export CLICOLOR=1
 export EDITOR=vim
-export PS1="\$(type -t screen_prompt > /dev/null && screen_prompt)\[\033[0;32m\]\u@\h\[\033[0m\] \[\033[0;36m\]\w\[\033[0m\] \[\033[0;33m\]\$(type -t git_prompt > /dev/null && git_prompt)\[\033[0;31m\]\[\033[0m\]% "
+export PS1="\$(type -t _screen_prompt > /dev/null && _screen_prompt)\[\033[0;32m\]\u@\h\[\033[0m\] \[\033[0;36m\]\w\[\033[0m\] \[\033[0;33m\]\$(type -t _git_prompt > /dev/null && _git_prompt)\[\033[0;31m\]\[\033[0m\]% "
 export PATH
 export PYTHONSTARTUP="$HOME/.pystartup"
 # export LUA_PATH="$HOME/local/lib/lua/?.lua;$HOME/local/lib/lua/?/init.lua"
 
-### Path ###
+
+
+### Paths ###
 
 addpath ~/dev/bin
 addpath ~/local/bin
@@ -133,7 +143,3 @@ addpath /usr/local/sbin
 [ -r ~/.bashrc-osx ] && source ~/.bashrc-osx
 [ -r ~/.bashrc-linux ] && source ~/.bashrc-linux
 [ -r ~/.bashrc-local ] && source ~/.bashrc-local
-
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
