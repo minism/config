@@ -1,0 +1,29 @@
+[user]
+	name = josh
+	email = jbothun@concentricsky.com
+
+[color]
+    diff = auto
+    status = auto
+    branch = auto
+    interactive = auto
+    ui = true
+    pager = true
+
+[init]
+	templatedir = /Users/josh/.git_template
+
+[alias]
+    slog = !"f() { git log $@ --pretty=format:\"%%BEGIN%C(yellow)%h %Cgreen%cn %Cblue(%ar) %Creset%s%%END%b\" | perl -pe 'chomp; s/%BEGIN|.*//; s/%END.+/ (\\033[0;31m...\\033[0m)\n/; s/%END/\n/' | less -RXF; }; f"
+    st = status
+
+[core]
+	excludesfile = /Users/josh/.gitignore_global
+
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true

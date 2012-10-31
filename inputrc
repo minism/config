@@ -1,0 +1,3 @@
+set completion-ignore-case On
+set completion-query-items 10000
+set page-completions Off
