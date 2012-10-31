@@ -31,6 +31,6 @@ addpath "/Library/Frameworks/Python.framework/Versions/2.7/bin"
 # Tab width
 tabs -4
 
-
 # Add homebrew PYTHONPATH
 export PYTHONPATH=/usr/local/lib/python2.7/site-packages/
+
