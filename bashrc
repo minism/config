@@ -36,12 +36,23 @@ cdp()
 # Make a python directory (now with -p!!)
 mkpydir()
 {
-    mkdir -p $1;
-    dir=$1
-    while [ "$dir" != "." ]; do
-        touch $dir/__init__.py
-        dir=$(dirname $dir);
+    for dir in "$@"; do
+        mkdir -p $dir;
+        while [ "$dir" != "." ]; do
+            touch $dir/__init__.py
+            dir=$(dirname $dir);
+        done
     done
+}
+
+
+# Make a code intel config pointing to the env
+mkcodeintel()
+{
+    libdir=$(cd .. && pwd)/env/lib/python2.7/site-packages/
+    mkdir -p .codeintel
+    echo "{\"Python\": { \"pythonExtraPaths\": [\"$libdir\"] } }" > .codeintel/config
+    echo "Created codeintel config pointing to ../env"
 }
 
 
@@ -116,6 +127,7 @@ alias jcurl='curl -H "Accept: application/json"'
 alias tmpenv='rm -rf /tmp/tmpenv && virtualenv /tmp/tmpenv && source /tmp/tmpenv/bin/activate'
 alias grep='egrep --color=auto'
 alias mtime='stat -f %m'
+alias e='source .env'
 
 
 
