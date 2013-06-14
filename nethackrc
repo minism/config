@@ -1,0 +1,4 @@
+OPTIONS=color
+OPTIONS=DECGraphics
+OPTIONS=norest_on_space
+OPTIONS=!autopickup
