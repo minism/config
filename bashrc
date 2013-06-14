@@ -33,6 +33,26 @@ cdp()
 }
 
 
+# Loop a command
+loop()
+{
+    while true
+    do
+        sleep 1
+        $@
+    done
+}
+
+
+# Cleanup setup.py files
+pipclean()
+{
+    rm -rf build
+    rm -rf dist
+    rm -rf *.egg-info
+}
+
+
 # Make a python directory (now with -p!!)
 mkpydir()
 {
@@ -49,10 +69,32 @@ mkpydir()
 # Make a code intel config pointing to the env
 mkcodeintel()
 {
-    libdir=$(cd .. && pwd)/env/lib/python2.7/site-packages/
+    libdir=~/.venv/$1/lib/python2.7/site-packages/
+    appsdir=$(pwd)/apps/
     mkdir -p .codeintel
-    echo "{\"Python\": { \"pythonExtraPaths\": [\"$libdir\"] } }" > .codeintel/config
-    echo "Created codeintel config pointing to ../env"
+    echo "{\"Python\": { \"pythonExtraPaths\": [\"$libdir\", \"$appsdir\"] } }" > .codeintel/config
+    echo "Created codeintel config pointing at .codeintel/config"
+}
+
+
+# Make a simple push script
+mkpush()
+{
+    dst=$1
+    echo "#!/usr/bin/env bash" > push.sh
+    echo "rsync -avz --exclude-from=.gitignore --exclude=.gitignore --exclude=.git . ${dst}" >> push.sh
+    chmod u+x push.sh
+    echo "Created push.sh"
+}
+
+
+# Prepend a timestamp to each line of stdin
+timestamp()
+{
+    while read line
+    do
+        echo "[$(date +%H:%M:%S)] ${line}"
+    done
 }
 
 

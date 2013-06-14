@@ -1,3 +1,19 @@
+# Timelapse screenshots
+timelapse()
+{
+    interval=${1:-5}
+    out=${2:-.}
+    format=jpg
+    while true
+    do
+        file=$out/capture-`date +%s`.$format
+        echo "Capturing screen to $file"
+        screencapture -C -m -t $format -x $file
+        sleep $interval
+    done
+}
+
+
 # Aliases
 alias ls='ls -FG'
 alias sub='sub -a'
