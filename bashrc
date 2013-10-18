@@ -1,20 +1,29 @@
 ### Functions
 
+# Add a path to PATH or move existing to front of list
+addpath()
+{
+    PATH=${PATH//":$1"/}    #delete any instances in the middle or at the end
+    PATH=${PATH//"$1:"/}    #delete any instances at the beginning
+    export PATH="$1:$PATH"  #prepend to beginning
+}
+
+
+# Prepend a timestamp to each line of stdin
+timestamp()
+{
+    while read line
+    do
+        echo "[$(date +%H:%M:%S)] ${line}"
+    done
+}
+
 
 # mkdirp and cd
 cdp()
 {
     mkdir -p $1;
     cd $1;
-}
-
-
-# Cleanup setup.py files
-pipclean()
-{
-    rm -rf build
-    rm -rf dist
-    rm -rf *.egg-info
 }
 
 
@@ -31,15 +40,33 @@ mkpydir()
 }
 
 
-# Prepend a timestamp to each line of stdin
-timestamp()
+# Cleanup setup.py files
+pipclean()
 {
-    while read line
-    do
-        echo "[$(date +%H:%M:%S)] ${line}"
-    done
+    rm -rf build
+    rm -rf dist
+    rm -rf *.egg-info
 }
 
+
+# Rsync a git directory
+gsync()
+{
+    rsync -avz --exclude-from=$1/.gitignore --exclude=$1/.git --exclude=.gitignore $@
+}
+
+
+# Useful screen: attach or create by name
+scr()
+{
+    socket=$1
+    shift
+    screen -x -q -U -RR $socket $*
+}
+
+
+
+### Prompt
 
 # Returns "*" if the current git branch is dirty.
 _parse_git_dirty()
@@ -57,15 +84,6 @@ _git_prompt()
     fi
 }
 
-
-# Delete remote branches that have been merged in
-git-prune-remote()
-{
-    base=$1||"master"
-    git branch -r --merged ${base} | sed 's/ *origin\///' | grep -v '${base}$' | xargs -I% git push origin :%
-}
-
-
 # Get the current screen number
 _screen_prompt()
 {
@@ -75,66 +93,35 @@ _screen_prompt()
 }
 
 
-# Add a path to PATH or move existing to front of list
-addpath()
-{
-    PATH=${PATH//":$1"/}    #delete any instances in the middle or at the end
-    PATH=${PATH//"$1:"/}    #delete any instances at the beginning
-    export PATH="$1:$PATH"  #prepend to beginning
-}
-
-
-# Connect to remote irssi screen (or create a new one)
-irc()
-{
-    ssh edgar -t "screen -D -RR -S irssi irssi"
-}
-
-
-# Rsync a git directory
-gsync()
-{
-    dir=$1
-    rsync -avz --exclude-from=$1/.gitignore --exclude=$1/.git --exclude=.gitignore $@
-}
+export PS1="\$(type -t _screen_prompt > /dev/null && _screen_prompt)\[\033[0;32m\]\u@\h\[\033[0m\] \[\033[0;36m\]\w\[\033[0m\] \[\033[0;33m\]\$(type -t _git_prompt > /dev/null && _git_prompt)\[\033[0;31m\]\[\033[0m\]% "
 
 
 
-### Aliases ###
+### Aliases
 
 alias ls='ls -F --color=auto'
 alias tree='tree -C'
 alias vi=vim
 alias py=python
-alias more='less'
-alias pytest='python setup.py -q install && '
-alias jcurl='curl -H "Accept: application/json"'
-alias tmpenv='rm -rf /tmp/tmpenv && virtualenv /tmp/tmpenv && source /tmp/tmpenv/bin/activate'
+alias less='less -R'
 alias grep='egrep --color=auto'
-alias mtime='stat -f %m'
-alias e='source .env'
+alias jcurl='curl -H "Accept: application/json"'
 
 
 
-### Environment ###
+### Environment
 
 export CLICOLOR=1
 export EDITOR=vim
-export PS1="\$(type -t _screen_prompt > /dev/null && _screen_prompt)\[\033[0;32m\]\u@\h\[\033[0m\] \[\033[0;36m\]\w\[\033[0m\] \[\033[0;33m\]\$(type -t _git_prompt > /dev/null && _git_prompt)\[\033[0;31m\]\[\033[0m\]% "
-export PATH
 export PYTHONSTARTUP="$HOME/.pystartup"
 # export LUA_PATH="$HOME/local/lib/lua/?.lua;$HOME/local/lib/lua/?/init.lua"
 
 
 
-### Paths ###
+### Paths
 
-addpath ~/dev/bin
-addpath ~/local/bin
-addpath /usr/local/bin
-addpath /usr/local/sbin
+addpath ~/bin
 
 
-### Load OS extensions ###
-
-[ -r ~/.bashrc-local ] && source ~/.bashrc-local
+# Load local extension, if it exists
+[ -r ~/.bashrc_local ] && source ~/.bashrc_local
