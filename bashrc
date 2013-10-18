@@ -8,7 +8,6 @@ addpath()
     export PATH="$1:$PATH"  #prepend to beginning
 }
 
-
 # Prepend a timestamp to each line of stdin
 timestamp()
 {
@@ -18,14 +17,12 @@ timestamp()
     done
 }
 
-
 # mkdirp and cd
 cdp()
 {
     mkdir -p $1;
     cd $1;
 }
-
 
 # Make a python directory (now with -p!!)
 mkpydir()
@@ -39,7 +36,6 @@ mkpydir()
     done
 }
 
-
 # Cleanup setup.py files
 pipclean()
 {
@@ -48,13 +44,11 @@ pipclean()
     rm -rf *.egg-info
 }
 
-
 # Rsync a git directory
 gsync()
 {
     rsync -avz --exclude-from=$1/.gitignore --exclude=$1/.git --exclude=.gitignore $@
 }
-
 
 # Useful screen: attach or create by name
 scr()
@@ -65,7 +59,6 @@ scr()
 }
 
 
-
 ### Prompt
 
 # Returns "*" if the current git branch is dirty.
@@ -73,7 +66,6 @@ _parse_git_dirty()
 {
     [[ $(git diff --shortstat 2> /dev/null | tail -n1) != "" ]] && echo "*"
 }
-
 
 # Get the current git branch name (if available)
 _git_prompt()
@@ -92,9 +84,7 @@ _screen_prompt()
   fi
 }
 
-
 export PS1="\$(type -t _screen_prompt > /dev/null && _screen_prompt)\[\033[0;32m\]\u@\h\[\033[0m\] \[\033[0;36m\]\w\[\033[0m\] \[\033[0;33m\]\$(type -t _git_prompt > /dev/null && _git_prompt)\[\033[0;31m\]\[\033[0m\]% "
-
 
 
 ### Aliases
@@ -108,14 +98,12 @@ alias grep='egrep --color=auto'
 alias jcurl='curl -H "Accept: application/json"'
 
 
-
 ### Environment
 
 export CLICOLOR=1
 export EDITOR=vim
 export PYTHONSTARTUP="$HOME/.pystartup"
 # export LUA_PATH="$HOME/local/lib/lua/?.lua;$HOME/local/lib/lua/?/init.lua"
-
 
 
 ### Paths
