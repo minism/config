@@ -72,7 +72,7 @@ _git_prompt()
 {
     local ref=$(git symbolic-ref HEAD 2>/dev/null | cut -d'/' -f3)
     if [ "$ref" != "" ]; then
-        echo "($ref$(_parse_git_dirty)) "
+        echo "($ref$(_parse_git_dirty))"
     fi
 }
 
@@ -84,7 +84,7 @@ _screen_prompt()
   fi
 }
 
-export PS1="\$(type -t _screen_prompt > /dev/null && _screen_prompt)\[\033[0;32m\]\u@\h\[\033[0m\] \[\033[0;36m\]\w\[\033[0m\] \[\033[0;33m\]\$(type -t _git_prompt > /dev/null && _git_prompt)\[\033[0;31m\]\[\033[0m\]% "
+export PS1="\$(type -t _screen_prompt > /dev/null && _screen_prompt)\[\033[0;32m\]\u@\h\[\033[0m\] \[\033[0;36m\]\w\[\033[0m\] \[\033[0;33m\]\$(type -t _git_prompt > /dev/null && _git_prompt) \[\033[0;31m\]\[\033[0m\]% "
 
 
 ### Aliases
