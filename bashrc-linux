@@ -1,8 +1,0 @@
-
-########
-# KEYS #
-########
-# eval `keychain --quiet --eval --agents ssh id_rsa`
-
-
-alias grep='grep --color=auto'

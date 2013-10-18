@@ -10,12 +10,12 @@ bind '"[B":history-search-forward'
 # Push directory
 cd()
 {
-    if [ -z "$@" ] ; 
+    if [ -z "$@" ] ;
     then
         builtin pushd $HOME > /dev/null
     else
         builtin pushd "$@" > /dev/null
-    fi  
+    fi
 }
 
 # Pop to directory
@@ -115,7 +115,7 @@ _git_prompt()
 }
 
 
-# Delete remote branches that have been merged in 
+# Delete remote branches that have been merged in
 git-prune-remote()
 {
     base=$1||"master"
@@ -194,6 +194,4 @@ addpath /usr/local/sbin
 
 ### Load OS extensions ###
 
-[ -r ~/.bashrc-osx ] && source ~/.bashrc-osx
-[ -r ~/.bashrc-linux ] && source ~/.bashrc-linux
 [ -r ~/.bashrc-local ] && source ~/.bashrc-local
