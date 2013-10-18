@@ -1,28 +1,4 @@
-### Bash mods ###
-
-# Search history on arrows
-bind '"[A":history-search-backward'
-bind '"[B":history-search-forward'
-
-
-### Functions ###
-
-# Push directory
-cd()
-{
-    if [ -z "$@" ] ;
-    then
-        builtin pushd $HOME > /dev/null
-    else
-        builtin pushd "$@" > /dev/null
-    fi
-}
-
-# Pop to directory
-p()
-{
-    builtin popd "$@" > /dev/null
-}
+### Functions
 
 
 # mkdirp and cd
@@ -30,17 +6,6 @@ cdp()
 {
     mkdir -p $1;
     cd $1;
-}
-
-
-# Loop a command
-loop()
-{
-    while true
-    do
-        sleep 1
-        $@
-    done
 }
 
 
@@ -63,28 +28,6 @@ mkpydir()
             dir=$(dirname $dir);
         done
     done
-}
-
-
-# Make a code intel config pointing to the env
-mkcodeintel()
-{
-    libdir=~/.venv/$1/lib/python2.7/site-packages/
-    appsdir=$(pwd)/apps/
-    mkdir -p .codeintel
-    echo "{\"Python\": { \"pythonExtraPaths\": [\"$libdir\", \"$appsdir\"] } }" > .codeintel/config
-    echo "Created codeintel config pointing at .codeintel/config"
-}
-
-
-# Make a simple push script
-mkpush()
-{
-    dst=$1
-    echo "#!/usr/bin/env bash" > push.sh
-    echo "rsync -avz --exclude-from=.gitignore --exclude=.gitignore --exclude=.git . ${dst}" >> push.sh
-    chmod u+x push.sh
-    echo "Created push.sh"
 }
 
 
