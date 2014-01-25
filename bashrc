@@ -110,7 +110,7 @@ alias jcurl='curl -H "Accept: application/json"'
 export CLICOLOR=1
 export EDITOR=vim
 export PYTHONSTARTUP="$HOME/.pystartup"
-export PIP_DONWLOAD_CACHE=$HOME/.cache/pip
+export PIP_DOWNLOAD_CACHE=$HOME/.cache/pip
 # export LUA_PATH="$HOME/local/lib/lua/?.lua;$HOME/local/lib/lua/?/init.lua"
 
 
