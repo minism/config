@@ -121,3 +121,6 @@ addpath ~/bin
 
 # Load local extension, if it exists
 [ -r ~/.bashrc_local ] && source ~/.bashrc_local
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
