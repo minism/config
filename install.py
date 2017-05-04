@@ -3,6 +3,7 @@
 """Assists with installing symlinks for all dotfiles/configs under this dir."""
 
 import os
+import sys
 
 
 FILE_MAP = {
@@ -12,6 +13,9 @@ FILE_MAP = {
   'pystartup': '~/.pystartup',
   'tmux.conf': '~/.tmux.conf',
   'vimrc': '~/.vimrc',
+
+  # TODO(joshcb): This should be OSX only.
+  'slate': '~/.slate',
 }
 
 DIR_MAP = {
@@ -29,10 +33,13 @@ def ensure_installed(src, dst):
       os.symlink(src, dst)
       print "Created %s" % rel
   else:
-    print "WARNING: %s already exist and is not a symlink, skipping." % rel
+    print "WARNING: %s already exists and is not a symlink, skipping." % rel
 
 
 def main():
+  # TODO(joshcb): Improve multi-platform support.
+  if sys.platform == 'darwin':
+    del DIR_MAP['sublime']
   config_root = os.path.dirname(__file__)
   full_map = {}
   for src_dir, dst_dir in DIR_MAP.iteritems():
