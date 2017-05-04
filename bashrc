@@ -103,6 +103,7 @@ alias py=python
 alias less='less -R'
 alias grep='egrep --color=auto'
 alias jcurl='curl -H "Accept: application/json"'
+alias sub='subl -a'
 
 
 ### Environment
