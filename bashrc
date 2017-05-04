@@ -65,6 +65,22 @@ serv()
     python -m SimpleHTTPServer $port
 }
 
+# Open sublime text in a way that allows piping on linux.
+sub()
+{
+  # Is stdin a terminal?
+  if test -t 0; then
+    # Stdin is a terminal.
+    # Open sublime normally.
+    subl -a "$@"
+  else
+    # Stdin is not a terminal, it must be a pipe.
+    # Pipe stdin to a temporary file, and open it in sublime.
+    FILENAME=$(tempfile)
+    cat >"$FILENAME" && subl -a "$FILENAME" "$@"
+  fi
+}
+
 
 ### Prompt
 
@@ -96,14 +112,15 @@ export PS1="\$(type -t _screen_prompt > /dev/null && _screen_prompt)\[\033[0;32m
 
 ### Aliases
 
-alias ls='ls -F --color=auto'
-alias tree='tree -C'
-alias vi=vim
-alias py=python
-alias less='less -R'
 alias grep='egrep --color=auto'
 alias jcurl='curl -H "Accept: application/json"'
-alias sub='subl -a'
+alias jsonsort='python -c "import sys,json; json.dump(json.load(sys.stdin), sys.stdout, indent=2, sort_keys=True)"'
+alias less='less -R'
+alias ls='ls -F --color=auto'
+alias py=python
+alias tree='tree -C'
+alias vi=vim
+alias xclip='xclip -selection c'
 
 
 ### Environment
@@ -114,6 +131,19 @@ export PYTHONSTARTUP="$HOME/.pystartup"
 export PIP_DOWNLOAD_CACHE=$HOME/.cache/pip
 # export LUA_PATH="$HOME/local/lib/lua/?.lua;$HOME/local/lib/lua/?/init.lua"
 
+# Unlimited history
+export HISTFILESIZE=
+export HISTSIZE=
+export HISTTIMEFORMAT="[%F %T] "
+export HISTFILE=~/.bash_infinite_history
+
+# Single history view (append instead of overwrite)
+shopt -s histappend
+
+# Apply history after every command rather than just exit
+PROMPT_COMMAND='history -a; history -n'
+
+
 
 ### Paths
 
@@ -122,6 +152,3 @@ addpath ~/bin
 
 # Load local extension, if it exists
 [ -r ~/.bashrc_local ] && source ~/.bashrc_local
-
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
