@@ -1,6 +1,6 @@
 [user]
-	name = josh
-	email = jbothun@concentricsky.com
+    name = josh
+    email = joshbothun@gmail.com
 
 [color]
     diff = auto
@@ -9,9 +9,6 @@
     interactive = auto
     ui = true
     pager = true
-
-[init]
-	templatedir = /Users/josh/.git_template
 
 [alias]
     # Short log
@@ -23,15 +20,8 @@
     # Merge feature
     mf = !"f() { git merge --no-ff $1 && git branch -d $1; }; f"
 
-[core]
-	excludesfile = /Users/josh/.gitignore_global
-
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
-
-[mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
 [push]
-	default = upstream
+    default = upstream
+
+[include]
+    path = .gitconfig-osx
