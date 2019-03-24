@@ -148,7 +148,8 @@ PROMPT_COMMAND='history -a; history -n'
 ### Paths
 
 addpath ~/bin
-
+addpath /usr/local/lib
+addpath /usr/local/bin
 
 # Load local extension, if it exists
 [ -r ~/.bashrc_local ] && source ~/.bashrc_local
