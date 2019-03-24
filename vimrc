@@ -17,6 +17,6 @@ if filereadable(expand('~/.vimrc_local'))
 	so ~/.vimrc_local
 endif
 
-execute pathogen#infect()
-filetype plugin indent on
-map <f2> :NERDTreeToggle<CR>
+" execute pathogen#infect()
+" filetype plugin indent on
+" map <f2> :NERDTreeToggle<CR>
