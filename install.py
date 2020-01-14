@@ -13,6 +13,7 @@ FILE_MAP = {
   'pystartup': '~/.pystartup',
   'tmux.conf': '~/.tmux.conf',
   'vimrc': '~/.vimrc',
+  'alacritty.yml': '~/.config/alacritty/alacritty.yml',
 
   # TODO(joshcb): This should be OSX only.
   'slate': '~/.slate',
@@ -23,6 +24,20 @@ DIR_MAP = {
 }
 
 
+def install(src, dst):
+  ensure_dir_exists(dst)
+  os.symlink(src, dst)
+  print "Created %s" % dst
+
+
+def ensure_dir_exists(path):
+  dirname = os.path.dirname(os.path.expanduser(path))
+  try:
+    os.makedirs(dirname)
+  except FileExistsError:
+    pass
+
+
 def ensure_installed(src, dst):
   rel = os.path.relpath(dst, os.path.expanduser('~'))
   if os.path.islink(dst):
@@ -30,8 +45,7 @@ def ensure_installed(src, dst):
   elif not os.path.exists(dst):
     result = raw_input("%s doesn't exist.  Install symlink? [y/n] " % rel)
     if result.upper() == 'Y':
-      os.symlink(src, dst)
-      print "Created %s" % rel
+      install(src, dst)
   else:
     print "WARNING: %s already exists and is not a symlink, skipping." % rel
 
