@@ -140,6 +140,9 @@ export HISTFILE=~/.bash_infinite_history
 # Single history view (append instead of overwrite)
 shopt -s histappend
 
+# Disable start/stop control so that C-s works for forward i search.
+stty -ixon
+
 # Apply history after every command rather than just exit
 PROMPT_COMMAND='history -a; history -n'
 
@@ -148,7 +151,9 @@ PROMPT_COMMAND='history -a; history -n'
 ### Paths
 
 addpath ~/bin
-
+addpath ~/dev/bin
+addpath /usr/local/lib
+addpath /usr/local/bin
 
 # Load local extension, if it exists
 [ -r ~/.bashrc_local ] && source ~/.bashrc_local
