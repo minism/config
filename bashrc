@@ -93,7 +93,7 @@ _parse_git_dirty()
 # Get the current git branch name (if available)
 _git_prompt()
 {
-    local ref=$(git symbolic-ref HEAD 2>/dev/null | cut -d'/' -f3)
+    local ref=$(git symbolic-ref HEAD 2>/dev/null | sed 's;refs/heads/;;g')
     if [ "$ref" != "" ]; then
         echo "($ref$(_parse_git_dirty)) "
     fi
