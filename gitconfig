@@ -25,5 +25,3 @@
 
 [include]
     path = .gitconfig-osx
-[url "git@github.com:"]
-	insteadOf = https://github.com/
