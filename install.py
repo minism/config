@@ -4,6 +4,7 @@
 
 import os
 import sys
+import errno
 
 
 FILE_MAP = {
@@ -34,8 +35,11 @@ def ensure_dir_exists(path):
   dirname = os.path.dirname(os.path.expanduser(path))
   try:
     os.makedirs(dirname)
-  except FileExistsError:
-    pass
+  except OSError as e:
+    if e.errno == errno.EEXIST:
+      pass
+    else:
+      raise
 
 
 def ensure_installed(src, dst):
