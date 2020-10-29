@@ -1,0 +1,30 @@
+{
+    "editor.minimap.enabled": false,
+    "editor.tabSize": 2,
+    "typescript.tsdk": "/usr/local/lib/node_modules/typescript/lib",
+    "go.lintFlags": [
+        "-min_confidence=1"
+    ],
+    "editor.formatOnSave": true,
+    "workbench.activityBar.visible": true,
+    "editor.wordBasedSuggestions": false,
+    "window.zoomLevel": 0,
+    "workbench.colorTheme": "Gruvbox Material Dark",
+    "files.exclude": {
+        "node_modules": true
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[javascriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "csharp.referencesCodeLens.enabled": false,
+    "gitlens.hovers.currentLine.over": "line"
+}
