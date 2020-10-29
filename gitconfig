@@ -20,6 +20,9 @@
     # Merge feature
     mf = !"f() { git merge --no-ff $1 && git branch -d $1; }; f"
 
+    # Recent branches
+    recent = "for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'"
+
 [push]
     default = upstream
 
