@@ -107,7 +107,7 @@ _screen_prompt()
   fi
 }
 
-export PS1="\$(type -t _screen_prompt > /dev/null && _screen_prompt)\[\033[0;32m\]\u@\h\[\033[0m\] \[\033[0;36m\]\w\[\033[0m\] \[\033[0;33m\]\$(type -t _git_prompt > /dev/null && _git_prompt)\[\033[0;31m\]\[\033[0m\]% "
+export PS1="[\D{%H:%M}] \$(type -t _screen_prompt > /dev/null && _screen_prompt)\[\033[0;32m\]\u@\h\[\033[0m\] \[\033[0;36m\]\w\[\033[0m\] \[\033[0;33m\]\$(type -t _git_prompt > /dev/null && _git_prompt)\[\033[0;31m\]\[\033[0m\]% "
 
 
 ### Aliases
@@ -136,6 +136,7 @@ export HISTFILESIZE=
 export HISTSIZE=
 export HISTTIMEFORMAT="[%F %T] "
 export HISTFILE=~/.bash_infinite_history
+export HISTCONTROL=ignorespace
 
 # Single history view (append instead of overwrite)
 shopt -s histappend
@@ -159,6 +160,14 @@ addpath ~/bin
 addpath ~/dev/bin
 addpath /usr/local/lib
 addpath /usr/local/bin
+
+
+### Nix shell settings.
+NIX_SHELL_PRESERVE_PROMPT=1
+if [[ -n "$IN_NIX_SHELL" ]]; then
+  PS1="(nix-shell) $PS1"
+fi
+
 
 # Load local extension, if it exists
 [ -r ~/.bashrc_local ] && source ~/.bashrc_local
