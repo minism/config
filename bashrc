@@ -81,6 +81,18 @@ sub()
   fi
 }
 
+scaffold-unity()
+{
+  if [ ! -d "Assets" ]; then
+    echo "Expected Assets directory - run from Unity project root."
+    return 1
+  fi;
+
+  for dir in Audio Imported Textures Sprites Shaders Materials Scripts Models Prefabs Settings; do
+    mkdir -v -p "Assets/$dir"
+  done
+}
+
 
 ### Prompt
 
