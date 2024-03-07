@@ -133,6 +133,7 @@ alias py=python
 alias tree='tree -C'
 alias vi=vim
 alias xclip='xclip -selection c'
+alias rg='rg -p'
 
 
 ### Environment
@@ -183,3 +184,7 @@ fi
 
 # Load local extension, if it exists
 [ -r ~/.bashrc_local ] && source ~/.bashrc_local
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
