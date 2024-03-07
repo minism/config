@@ -88,7 +88,7 @@ scaffold-unity()
     return 1
   fi;
 
-  for dir in Audio Imported Textures Sprites Shaders Materials Scripts Models Prefabs Settings; do
+  for dir in Audio Imported Textures Scenes Sprites Shaders Materials Scripts Models Prefabs Settings; do
     mkdir -v -p "Assets/$dir"
   done
 }
